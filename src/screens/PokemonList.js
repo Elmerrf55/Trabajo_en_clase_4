@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Dimensions, TextInput, ActivityIndicator, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Dimensions, TextInput, ActivityIndicator, Button } from 'react-native';
 
 const WIDTH = Dimensions.get('window').width;
 const numColumns = 3;
@@ -53,7 +53,7 @@ export default function PokemonList() {
         <Button
           title="Buscar"
           onPress={fetchData}
-          color="#f00"
+          color="#ff8c00" // Cambia el color del botón aquí (naranja)
         />
       </View>
       {loading ? (
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#00796b',
+    color: '#0d47a1', // Cambia el color del encabezado aquí (azul oscuro)
     textAlign: 'center',
   },
   searchContainer: {
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: '#00796b',
+    borderColor: '#0d47a1',
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     height: 40,
-    borderColor: '#00796b',
+    borderColor: '#0d47a1',
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
@@ -116,4 +116,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-

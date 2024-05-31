@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator } from 'react-native';
 
-export default function ItemListScreen() {
-  const [items, setItems] = useState([]);
+export default function NarutoCharacterListScreen() {
+  const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchItems();
+    fetchCharacters();
   }, []);
 
-  const fetchItems = async () => {
+  const fetchCharacters = async () => {
     try {
-      const response = await fetch('https://swapi.dev/api/people/');
+      const response = await fetch('https://api.jikan.moe/v4/characters?q=naruto');
       const data = await response.json();
-      setItems(data.results);
+      setCharacters(data.data);
       setLoading(false);
     } catch (error) {
-      console.error("Hubo un error obteniendo los items", error);
+      console.error("Hubo un error obteniendo los personajes", error);
       setLoading(false);
     }
   };
@@ -25,13 +25,7 @@ export default function ItemListScreen() {
     return (
       <View style={styles.card}>
         <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.description}>Altura: {item.height} cm</Text>
-        <Text style={styles.description}>Peso: {item.mass} kg</Text>
-        <Text style={styles.description}>Color de cabello: {item.hair_color}</Text>
-        <Text style={styles.description}>Color de piel: {item.skin_color}</Text>
-        <Text style={styles.description}>Color de ojos: {item.eye_color}</Text>
-        <Text style={styles.description}>Año de nacimiento: {item.birth_year}</Text>
-        <Text style={styles.description}>Género: {item.gender}</Text>
+        <Image source={{ uri: item.images.jpg.image_url }} style={styles.image} />
       </View>
     );
   };
@@ -42,9 +36,9 @@ export default function ItemListScreen() {
         <ActivityIndicator style={styles.loading} size="large" color="#0000ff" />
       ) : (
         <FlatList
-          data={items}
+          data={characters}
           renderItem={renderItem}
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.mal_id.toString()}
           contentContainerStyle={styles.list}
         />
       )}
@@ -84,11 +78,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#333333',
   },
-  description: {
-    fontSize: 14,
-    textAlign: 'center',
-    marginBottom: 5,
-    color: '#666666',
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginTop: 10,
   },
   loading: {
     marginTop: 20,

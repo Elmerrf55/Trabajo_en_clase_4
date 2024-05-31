@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Enroll.png",
+      "image": "./assets/carga.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#3b4cca"
     },
